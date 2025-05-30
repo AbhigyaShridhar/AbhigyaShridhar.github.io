@@ -15,7 +15,7 @@ const experienceData = [
                 name: 'Payment gateway',
                 description: 'Implemented a consumer facing payment gateway by integrating reconciliation flows with UPI "deep-linking". Added functionalities like refunds, encryption, webhook configurations and post status actions, and status checks.',
                 technologies: ['Python', 'Django', 'REST APIs'],
-                achievements: ['Achieved a drop in payment drop out rates by 31%.', 'Increased online payments by 12%.', 'Directly saved 1% on transaction fee.', 'Implemented payment receipt generation logic.']
+                achievements: ['Achieved a drop in payment drop out rates by 31%.', 'Increased online payments by 12%.', 'Handling over 1 billion INR in transactions per month.', 'Directly saved 1% on transaction fee.', 'Implemented payment receipt generation logic.']
             },
             {
                 name: 'Account management',
@@ -116,13 +116,13 @@ const otherProjectsData = [
         date: '2025',
         title: 'Go state machines',
         description: 'A collection of interfaces and structs which allow developers to break sequential operations in "states"',
-        projectLink: 'https://github.com/AbhigyaShridhar/go-state-machine',
         projects: [
             {
                 name: 'Project details',
                 description: 'Being a Python developer, the reusability and abstraction features of the language and it\'s frameworks is very appealing to me. Although, Go is more focused on simplicity rather than functionality, this is an attempt to provide some standardization of code for sequential operations in large flows.',
                 technologies: ['Go'],
-                achievements: ['Implemented context propagation.', 'Provided an extensible and developer friendly interface.']
+                achievements: ['Implemented context propagation.', 'Provided an extensible and developer friendly interface.'],
+                projectLink: 'https://github.com/AbhigyaShridhar/go-state-machine'
             }
         ]
     }
@@ -252,7 +252,7 @@ function createTimelineItem(item, sectionType) {
                         `).join('')}
                     </ul>
                 </div>
-                ${sectionType === 'education' && project.projectLink ? `
+                ${(sectionType === 'education' || sectionType === 'projects') && project.projectLink ? `
                     <a href="${project.projectLink}" target="_blank" class="project-link">
                         <i class="fab fa-github"></i> View Project
                     </a>
