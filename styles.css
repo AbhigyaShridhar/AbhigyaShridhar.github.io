@@ -142,11 +142,11 @@ body::before {
     object-fit: cover;
     opacity: 0;
     transition: opacity 1s ease-in-out;
-    filter: brightness(1) contrast(1.1);
+    filter: brightness(1.1) contrast(1.2) saturate(1.1);
 }
 
 .background-slider img.active {
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 /* Hero Overlay */
@@ -156,7 +156,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.5));
+    background: linear-gradient(45deg, rgba(10, 10, 10, 0.4), rgba(10, 10, 10, 0.3));
     z-index: 2;
 }
 
@@ -526,92 +526,121 @@ body::before {
 
 /* Contact Section */
 .contact {
-    padding: 5rem 1rem;
-    background-color: var(--dark-bg);
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.95), rgba(20, 20, 20, 0.95));
     text-align: center;
     position: relative;
 }
 
-.contact h2 {
-    margin-bottom: 3rem;
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    text-shadow: var(--neon-glow);
-}
-
-.contact-button {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background-color: transparent;
-    color: var(--secondary-color);
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 500;
-    border: 2px solid var(--secondary-color);
-    transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(108, 99, 255, 0.5);
-    position: relative;
-    overflow: hidden;
-}
-
-.contact-button::before {
+.contact::before {
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(108, 99, 255, 0.2), transparent);
-    transition: 0.5s;
+    background: 
+        radial-gradient(circle at 30% 70%, rgba(0, 255, 157, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 30%, rgba(108, 99, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
 }
 
-.contact-button:hover {
-    background-color: var(--secondary-color);
-    color: var(--dark-bg);
-    transform: translateY(-3px);
-    box-shadow: 0 0 20px rgba(108, 99, 255, 0.6);
-}
-
-.contact-button:hover::before {
-    left: 100%;
-}
-
-.social-links {
-    margin-top: 2rem;
-}
-
-.social-links a {
+.contact h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
     color: var(--text-color);
-    font-size: 1.5rem;
-    margin: 0 1rem;
-    transition: all 0.3s ease;
+    text-shadow: var(--neon-glow);
     position: relative;
-    display: inline-block;
 }
 
-.social-links a::before {
+.contact h2::before {
     content: '';
     position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    border: 1px solid var(--secondary-color);
-    border-radius: 50%;
-    opacity: 0;
-    transform: scale(0.8);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 2px;
+}
+
+.contact-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-message {
+    margin-bottom: 3rem;
+}
+
+.contact-message h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    text-shadow: var(--neon-glow);
+}
+
+.contact-message p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+    margin-bottom: 2rem;
+}
+
+.contact-actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contact-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+    min-width: 200px;
+    justify-content: center;
 }
 
-.social-links a:hover {
-    color: var(--secondary-color);
-    text-shadow: 0 0 10px rgba(108, 99, 255, 0.5);
-    transform: translateY(-3px);
+.contact-button.primary {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-color);
+    box-shadow: var(--neon-glow);
 }
 
-.social-links a:hover::before {
-    opacity: 1;
-    transform: scale(1);
+.contact-button.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--neon-glow-strong);
+    border-color: var(--primary-color);
+}
+
+.contact-button.secondary {
+    background: transparent;
+    color: var(--text-color);
+    border-color: var(--secondary-color);
+}
+
+.contact-button.secondary:hover {
+    background: var(--secondary-color);
+    color: var(--dark-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 255, 157, 0.5);
+}
+
+.contact-button i {
+    font-size: 1.2rem;
 }
 
 /* Footer */
@@ -644,16 +673,62 @@ footer::before {
     }
     
     .subtitle {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
     
     .timeline-container {
-        max-height: 500px;
+        flex-direction: column;
     }
     
     .timeline h2::before,
     .timeline h2::after {
-        width: 30px;
+        display: none;
+    }
+    
+    .opportunities h2 {
+        font-size: 2rem;
+    }
+    
+    .opportunities-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .cta-section {
+        padding: 2rem 1rem;
+    }
+    
+    .cta-section h3 {
+        font-size: 1.8rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cta-button {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+    
+    .contact h2 {
+        font-size: 2rem;
+    }
+    
+    .contact-message h3 {
+        font-size: 1.5rem;
+    }
+    
+    .contact-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contact-button {
+        width: 100%;
+        max-width: 300px;
     }
 }
 
@@ -829,9 +904,9 @@ footer::before {
 }
 
 .personal-statement p {
-    color: var(--text-color);
-    line-height: 1.8;
     font-size: 1.1rem;
+    line-height: 1.8;
+    color: #e0e0e0;
 }
 
 /* Responsive adjustments */
@@ -1115,4 +1190,201 @@ footer::before {
 
 .resume-button i {
     font-size: 1.1em;
+}
+
+/* Opportunities Section */
+.opportunities {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.95), rgba(20, 20, 20, 0.95));
+    position: relative;
+}
+
+.opportunities::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(108, 99, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 255, 157, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.opportunities h2 {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    color: var(--text-color);
+    text-shadow: var(--neon-glow);
+    position: relative;
+}
+
+.opportunities h2::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 2px;
+}
+
+.opportunities-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.opportunity-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid rgba(108, 99, 255, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.opportunity-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(108, 99, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.opportunity-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: var(--neon-glow-strong);
+}
+
+.opportunity-card:hover::before {
+    left: 100%;
+}
+
+.opportunity-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.opportunity-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.opportunity-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+    text-align: center;
+}
+
+.cta-section {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem;
+    background: var(--card-bg);
+    border-radius: 20px;
+    border: 2px solid var(--primary-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent 0%, rgba(108, 99, 255, 0.05) 50%, transparent 100%);
+    pointer-events: none;
+}
+
+.cta-section h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    text-shadow: var(--neon-glow);
+}
+
+.cta-section p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+    margin-bottom: 2rem;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+}
+
+.cta-button.primary {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-color);
+    box-shadow: var(--neon-glow);
+}
+
+.cta-button.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--neon-glow-strong);
+    border-color: var(--primary-color);
+}
+
+.cta-button.secondary {
+    background: transparent;
+    color: var(--text-color);
+    border-color: var(--secondary-color);
+}
+
+.cta-button.secondary:hover {
+    background: var(--secondary-color);
+    color: var(--dark-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 255, 157, 0.5);
+}
+
+.cta-button i {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .cta-buttons {
+        flex-direction: column;
+    }
 } 

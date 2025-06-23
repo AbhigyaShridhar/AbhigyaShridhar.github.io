@@ -33,7 +33,7 @@ const experienceData = [
                 name: 'Reconciliation flow centralization',
                 description: 'Built a no code client on-boarding functionality, which enables different business units within the company to plug in their credentials and utilize payment gateway services without the need for additional development or schema changes.',
                 technologies: ['Python', 'Django', 'MySQL'],
-                achievements: ['Consolidated multiple gateway flows into a single generic process.', 'Reduced cross-pod development and onboarding times for new gateway integrations by over 80%.']
+                achievements: ['Consolidated multiple gateway flows into a single generic process.', 'Reduced cross-pod development and onboarding times for new gateway integrations by over 90%.']
             },
             {
                 name: 'Celery cost optimization',
@@ -188,23 +188,6 @@ function createTimeline() {
     const educationContainer = document.querySelector('.timeline-section:nth-child(3)');
     
     if (!experienceContainer || !otherProjectsContainer || !educationContainer) return;
-    
-    // Add resume button to experience section
-    const resumeButton = document.createElement('a');
-    resumeButton.href = 'https://drive.google.com/file/d/1qMHls8q6LHx8hQ5dkeR9dp2H2mOvpIGZ/view?usp=share_link';
-    resumeButton.className = 'resume-button';
-    resumeButton.innerHTML = '<i class="fas fa-file-alt"></i> View Resume';
-    resumeButton.target = '_blank';
-    
-    // Find the existing Experience heading and add the resume button after it
-    const experienceHeading = experienceContainer.querySelector('h3.section-title');
-    if (experienceHeading) {
-        const headerContainer = document.createElement('div');
-        headerContainer.className = 'section-header';
-        experienceHeading.parentNode.insertBefore(headerContainer, experienceHeading);
-        headerContainer.appendChild(experienceHeading);
-        headerContainer.appendChild(resumeButton);
-    }
     
     // Create experience timeline
     experienceData.forEach(item => {
