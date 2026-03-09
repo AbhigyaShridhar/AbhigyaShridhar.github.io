@@ -3,196 +3,710 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Software Engineer Portfolio</title>
+    <title>dev.portfolio — Software Engineer</title>
+    <meta name="description" content="Software Engineer — building scalable systems and leading high-performing teams.">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo"><i class="fa-solid fa-user"></i></div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#opportunities">Opportunities</a></li>
-                <li><a href="#timeline">Timeline</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-content container">
+        <a class="logo" href="#home" aria-label="Home">
+            <span class="logo-bracket">&lt;/&gt;</span>
+            <span class="logo-text">Abhigya<span class="logo-dot">.</span>dev</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="AbhigyaShridhar.pdf" download class="btn btn-outline btn-sm nav-resume-btn">
+                <i class="fa-solid fa-file-arrow-down"></i> Resume
+            </a>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <a href="#contact" class="btn btn-primary btn-sm nav-cta">Get in Touch</a>
         </div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section id="home" class="hero" aria-label="Hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-overlay" aria-hidden="true"></div>
+    <div class="hero-content container">
+        <div class="availability-badge">
+            <span class="avail-dot"></span>
+            Available for new opportunities
+        </div>
+        <h1 class="hero-title">Abhigya<br><span class="hero-title-accent">Shridhar</span></h1>
+        <p class="hero-subtitle">Building scalable backend systems and payment infrastructure at Spinny.<br>~4 years building scalable systems across fintech, backend microservices, and open source.</p>
+        <div class="hero-ctas">
+            <a href="#contact" class="btn btn-primary">
+                <i class="fa-solid fa-paper-plane"></i> Get in Touch
+            </a>
+            <a href="AbhigyaShridhar.pdf" download class="btn btn-outline">
+                <i class="fa-solid fa-download"></i> Download Resume
+            </a>
+        </div>
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-number">4<span>+</span></div>
+                <div class="stat-label">Years Building</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <div class="stat-number">1B<span>+</span></div>
+                <div class="stat-label">INR Processed / month</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Hackathon Wins</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Open Source Packages</div>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator" aria-hidden="true">
+        <div class="arrow"><span></span><span></span><span></span></div>
+    </div>
+</section>
+
+<!-- Featured Project -->
+<section id="featured" class="section featured" aria-label="Featured Project">
+    <div class="container">
+        <div class="section-header">
+            <h2><i class="fa-solid fa-star featured-star"></i> Featured Project</h2>
+        </div>
+        <div class="featured-card featured-card-noimg" data-project-id="spinny-db-routing">
+            <div class="featured-body">
+                <div class="featured-header-row">
+                    <div>
+                        <span class="proj-badge badge-corporate" style="margin-bottom:0.6rem;display:inline-flex"><i class="fa-solid fa-building"></i> Corporate · Payments Infrastructure</span>
+                        <h3 class="featured-title">DB Microservice Isolation &amp; Read Replica Routing</h3>
+                    </div>
+                    <button class="featured-arrow-btn" aria-label="View project details" data-open-project="spinny-db-routing">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </button>
+                </div>
+                <p class="featured-desc">Isolated the payments service into a dedicated database microservice — separating it from the central monolith for fault tolerance and independent scaling. Built a custom Django DATABASE_ROUTERS layer to route reads to load-balanced replicas, extended GraphQL to support replica reads via a custom request header, and implemented a workaround for Django ticket #35974 (RelatedManager cross-db FK bug).</p>
+                <div class="featured-metrics">
+                    <span class="metric metric-green"><i class="fa-solid fa-arrow-trend-up"></i> ~60% primary DB read reduction</span>
+                    <span class="metric metric-blue"><i class="fa-solid fa-database"></i> Payments DB fully isolated</span>
+                    <span class="metric metric-purple"><i class="fa-brands fa-python"></i> Django #35974 workaround</span>
+                </div>
+                <ul class="tech-list">
+                    <li>Python</li><li>Django</li><li>MySQL</li><li>Microservices</li><li>DATABASE_ROUTERS</li><li>Read Replicas</li><li>GraphQL</li>
+                </ul>
+                <div class="featured-meta-row">
+                    <span class="featured-role"><i class="fa-solid fa-user-tie"></i> Backend Engineer</span>
+                    <span class="featured-duration"><i class="fa-solid fa-calendar"></i> 2023 – 2024</span>
+                </div>
+                <div class="featured-actions">
+                    <button class="btn btn-primary btn-sm" data-open-project="spinny-db-routing">
+                        <i class="fa-solid fa-diagram-project"></i> View Details
+                    </button>
+                    <a href="https://code.djangoproject.com/ticket/35974" target="_blank" rel="noreferrer" class="btn btn-outline btn-sm">
+                        <i class="fa-solid fa-bug"></i> Django #35974
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="section projects" aria-label="Projects">
+    <div class="container">
+        <div class="section-header">
+            <h2>Projects</h2>
+            <p class="section-note">Full project portfolio across corporate, open source, and academic work.</p>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="project-tabs" role="tablist">
+            <button class="tab-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+            <button class="tab-btn" data-filter="corporate" role="tab" aria-selected="false">
+                <i class="fa-solid fa-building"></i> Corporate
+            </button>
+            <button class="tab-btn" data-filter="opensource" role="tab" aria-selected="false">
+                <i class="fa-brands fa-github"></i> Open Source
+            </button>
+            <button class="tab-btn" data-filter="hackathon" role="tab" aria-selected="false">
+                <i class="fa-solid fa-trophy"></i> Hackathons
+            </button>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid">
+
+            <!-- Corporate -->
+            <article class="project-card" data-category="corporate" data-project-id="payment-gateway" data-expand-panel="gridExpand">
+                <div class="project-card-body">
+                    <div class="project-badge-row">
+                        <span class="proj-badge badge-corporate"><i class="fa-solid fa-building"></i> Corporate · Spinny</span>
+                        <span class="card-period">2023 – 2025</span>
+                    </div>
+                    <h3 class="project-title">Payment Gateway<br>Multi-Provider State Machine</h3>
+                    <p class="project-desc">7-state FSM unifying multiple aggregator and banking integrations with atomic DB transitions and Kafka async refund retry.</p>
+                    <div class="card-metrics-row">
+                        <span>3 providers unified</span><span>Atomic across 2 models</span><span>Kafka refund retry</span>
+                    </div>
+                    <ul class="tech-list"><li>Python</li><li>Django</li><li>Razorpay</li><li>ICICI</li><li>Kafka</li></ul>
+                </div>
+                <div class="card-expand-hint"><i class="fa-solid fa-diagram-project"></i> View Architecture <i class="fa-solid fa-chevron-down card-chevron"></i></div>
+            </article>
+
+            <article class="project-card" data-category="corporate" data-project-id="celery-consumer" data-expand-panel="gridExpand">
+                <div class="project-card-body">
+                    <div class="project-badge-row">
+                        <span class="proj-badge badge-corporate"><i class="fa-solid fa-building"></i> Corporate · Spinny</span>
+                        <span class="card-period">2022 – 2023</span>
+                    </div>
+                    <h3 class="project-title">Custom SQS<br>Celery Consumer</h3>
+                    <p class="project-desc">Parallel multi-queue SQS consumer with safe AST-based deserialization of Celery's complex argument types.</p>
+                    <div class="card-metrics-row">
+                        <span>N queues in parallel</span><span>10 tasks/queue concurrent</span><span>Safe datetime AST parse</span>
+                    </div>
+                    <ul class="tech-list"><li>Python</li><li>AWS SQS</li><li>Celery</li><li>ThreadPoolExecutor</li><li>AST</li></ul>
+                </div>
+                <div class="card-expand-hint"><i class="fa-solid fa-diagram-project"></i> View Architecture <i class="fa-solid fa-chevron-down card-chevron"></i></div>
+            </article>
+
+            <article class="project-card" data-category="corporate" data-project-id="audit-framework" data-expand-panel="gridExpand">
+                <div class="project-card-body">
+                    <div class="project-badge-row">
+                        <span class="proj-badge badge-corporate"><i class="fa-solid fa-building"></i> Corporate · Spinny</span>
+                        <span class="card-period">2024 – 2025</span>
+                    </div>
+                    <h3 class="project-title">Payments<br>Audit Framework</h3>
+                    <p class="project-desc">Declarative field-level auditing via Django signals. Zero audit code in views — both .save() and bulk .update() covered.</p>
+                    <div class="card-metrics-row">
+                        <span>Zero view code</span><span>Multiple write paths</span><span>Async bulk audit</span>
+                    </div>
+                    <ul class="tech-list"><li>Python</li><li>Django Signals</li><li>Celery</li><li>contextvars</li><li>ContentTypes</li></ul>
+                </div>
+                <div class="card-expand-hint"><i class="fa-solid fa-diagram-project"></i> View Architecture <i class="fa-solid fa-chevron-down card-chevron"></i></div>
+            </article>
+
+            <article class="project-card" data-category="corporate" data-project-id="employee-access" data-expand-panel="gridExpand">
+                <div class="project-card-body">
+                    <div class="project-badge-row">
+                        <span class="proj-badge badge-corporate"><i class="fa-solid fa-building"></i> Corporate · Spinny</span>
+                        <span class="card-period">2022 – 2023</span>
+                    </div>
+                    <h3 class="project-title">Employee Product<br>Access Management</h3>
+                    <p class="project-desc">Unified access sync across 9+ platforms via vendor-agnostic driver pattern, with anomaly detection and role audit pipeline.</p>
+                    <div class="card-metrics-row">
+                        <span>9+ platforms</span><span>Driver pattern</span><span>Anomaly detection</span>
+                    </div>
+                    <ul class="tech-list"><li>Python</li><li>Django</li><li>Keycloak</li><li>importlib</li><li>Celery</li></ul>
+                </div>
+                <div class="card-expand-hint"><i class="fa-solid fa-diagram-project"></i> View Architecture <i class="fa-solid fa-chevron-down card-chevron"></i></div>
+            </article>
+
+            <!-- Open Source -->
+            <article class="project-card" data-category="opensource" data-project-id="codecoverage-cli" data-expand-panel="gridExpand">
+                <div class="project-card-body">
+                    <div class="project-badge-row">
+                        <span class="proj-badge badge-opensource"><i class="fa-brands fa-github"></i> Open Source</span>
+                        <span class="card-period">2024 – Present</span>
+                    </div>
+                    <h3 class="project-title">codecoverage-cli</h3>
+                    <p class="project-desc">Python AST test generation CLI — pure static analysis, style-matched to your codebase, diff-test for PR workflows. Published on PyPI.</p>
+                    <div class="card-metrics-row">
+                        <span>No runtime imports</span><span>Style-matched tests</span><span>PR diff-test mode</span>
+                    </div>
+                    <ul class="tech-list"><li>Python</li><li>AST</li><li>LangGraph</li><li>Anthropic</li><li>OpenAI</li></ul>
+                </div>
+                <div class="card-expand-hint"><i class="fa-solid fa-diagram-project"></i> View Architecture <i class="fa-solid fa-chevron-down card-chevron"></i></div>
+            </article>
+
+            <article class="project-card" data-category="opensource" data-project-id="state-machine-framework" data-expand-panel="gridExpand">
+                <div class="project-card-body">
+                    <div class="project-badge-row">
+                        <span class="proj-badge badge-opensource"><i class="fa-brands fa-github"></i> Open Source</span>
+                        <span class="card-period">2023 – Present</span>
+                    </div>
+                    <h3 class="project-title">state-machine-framework</h3>
+                    <p class="project-desc">Framework-agnostic Python state machine with atomic transitions, @pre/@post/@validator hooks, and pluggable ORM adapter. Powers Spinny's payment gateway.</p>
+                    <div class="card-metrics-row">
+                        <span>ORM-agnostic</span><span>Atomic transitions</span><span>Production at Spinny</span>
+                    </div>
+                    <ul class="tech-list"><li>Python</li><li>Decorator Pattern</li><li>Abstract ORM</li><li>Django</li></ul>
+                </div>
+                <div class="card-expand-hint"><i class="fa-solid fa-diagram-project"></i> View Architecture <i class="fa-solid fa-chevron-down card-chevron"></i></div>
+            </article>
+
+            <!-- Hackathons -->
+            <article class="project-card" data-category="hackathon" data-project-id="keep-an-eye" data-expand-panel="gridExpand">
+                <div class="project-card-body">
+                    <div class="project-badge-row">
+                        <span class="proj-badge badge-hackathon"><i class="fa-solid fa-trophy"></i> Hackathon · Linode</span>
+                        <span class="card-period">Hacking Heist 2.0</span>
+                    </div>
+                    <h3 class="project-title">Keep an Eye</h3>
+                    <p class="project-desc">Chrome extension that monitors webpage content in real time, detects profanity via a FastAPI backend, and sends SMS alerts to parents via Twilio. Won "Best Use of Linode Cloud".</p>
+                    <div class="card-metrics-row">
+                        <span>Chrome Extension</span><span>SMS Alerts</span><span>Best Use of Linode</span>
+                    </div>
+                    <ul class="tech-list"><li>JavaScript</li><li>Python</li><li>FastAPI</li><li>Twilio</li><li>Linode</li></ul>
+                </div>
+                <div class="card-expand-hint"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Details <i class="fa-solid fa-chevron-down card-chevron"></i></div>
+            </article>
+
+            <article class="project-card" data-category="hackathon" data-project-id="block-city" data-expand-panel="gridExpand">
+                <div class="project-card-body">
+                    <div class="project-badge-row">
+                        <span class="proj-badge badge-hackathon"><i class="fa-solid fa-trophy"></i> Hackathon · MLH Global</span>
+                        <span class="card-period">Slam Dunk Hacks</span>
+                    </div>
+                    <h3 class="project-title">Block City</h3>
+                    <p class="project-desc">Basketball community platform — find local teams by location, schedule games, and track scores. Built with Django REST Framework and Figma-to-code frontend in 48 hours. Won "My First Gold Medal".</p>
+                    <div class="card-metrics-row">
+                        <span>Location Matching</span><span>48-hour Build</span><span>MLH Winner</span>
+                    </div>
+                    <ul class="tech-list"><li>Django</li><li>DRF</li><li>Python</li><li>Figma</li></ul>
+                </div>
+                <div class="card-expand-hint"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Details <i class="fa-solid fa-chevron-down card-chevron"></i></div>
+            </article>
+
+            <article class="project-card" data-category="hackathon" data-project-id="crops-plus" data-expand-panel="gridExpand">
+                <div class="project-card-body">
+                    <div class="project-badge-row">
+                        <span class="proj-badge badge-hackathon"><i class="fa-solid fa-trophy"></i> Hackathon · MLH Global</span>
+                        <span class="card-period">2020</span>
+                    </div>
+                    <h3 class="project-title">Crops+</h3>
+                    <p class="project-desc">Geo-tagged crop suitability prediction using spatial SQL on soil, rainfall, and climate data. Won a global MLH hackathon and was expanded into a peer-reviewed academic study.</p>
+                    <div class="card-metrics-row">
+                        <span>Geo-tagging</span><span>Spatial Queries</span><span>Academic Study</span>
+                    </div>
+                    <ul class="tech-list"><li>Python</li><li>PostGIS</li><li>Spatial SQL</li></ul>
+                </div>
+                <div class="card-expand-hint"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Details <i class="fa-solid fa-chevron-down card-chevron"></i></div>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- Experience -->
+<section id="experience" class="section experience" aria-label="Experience">
+    <div class="container">
+        <div class="section-header">
+            <h2>Experience</h2>
+            <p class="section-note">IIIT Una, B.Tech Computer Science · 2019 – 2023</p>
+        </div>
+        <ol class="timeline">
+
+            <li class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-meta">May 2023 – Present</div>
+                    <h3 class="timeline-title">Software Development Engineer</h3>
+                    <div class="timeline-company">
+                        <a href="https://www.spinny.com" target="_blank" rel="noopener" class="timeline-company-link">Spinny</a>
+                        <span class="timeline-company-ext"><a href="https://www.spinny.com" target="_blank" rel="noopener">website</a> | <a href="https://play.google.com/store/apps/details?id=com.spinny.consumer&pcampaignid=web_share" target="_blank" rel="noopener">app</a></span>
+                        <span class="timeline-location">· Gurugram, India · Payments &amp; Demand</span>
+                    </div>
+                    <ul class="timeline-highlights">
+                        <li>Led payment gateway with Razorpay + ICICI integrations — <strong>31% drop in payment dropout</strong>, 12% uplift in online payments, saving 1% transaction fee while processing <strong>over 1B INR/month</strong></li>
+                        <li>Architected an internal SaaS tool unifying multiple gateway integrations, reducing new account onboarding time by <strong>90%</strong> and standardising flows across business teams</li>
+                        <li>Designed a reusable State Machine framework for payment and refund lifecycles; integrated Kafka + Apache NiFi for async state transitions and provider status checks</li>
+                        <li>Isolated payments DB from the central monolith via custom Django DATABASE_ROUTERS, cutting <strong>10%+ traffic</strong> to the primary and eliminating AWS DMS-induced lag and service cost</li>
+                        <li>Extended ORM and GraphQL for cross-database queries; separated read/write replicas for load balancing, with upstream patch submitted for Django ticket #35974</li>
+                        <li>Achieved <strong>2× – 8× faster API response times</strong> by migrating critical flows to dedicated microservices; reduced SQS API calls by <strong>50%</strong> via Celery long-polling and concurrency tuning</li>
+                        <li>Built "Progressive Dialer" demand tool in Node.js sending IVR calls to buy-leads and managing callback data — handling <strong>200k+ calls/day</strong></li>
+                        <li>Introduced a declarative audit framework using Django signals + contextvars for field-level change tracking with zero view code; added agentic AI tooling for unit test generation and coverage</li>
+                    </ul>
+                    <ul class="tech-list">
+                        <li>Python</li><li>Django</li><li>Kafka</li><li>NiFi</li><li>MySQL</li><li>AWS SQS</li><li>Celery</li><li>GraphQL</li><li>Node.js</li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-meta">Oct 2022 – Mar 2023 · Internship</div>
+                    <h3 class="timeline-title">Technical Consultant</h3>
+                    <div class="timeline-company">
+                        <a href="https://www.spinny.com" target="_blank" rel="noopener" class="timeline-company-link">Spinny</a>
+                        <span class="timeline-company-ext"><a href="https://www.spinny.com" target="_blank" rel="noopener">website</a> | <a href="https://play.google.com/store/apps/details?id=com.spinny.consumer&pcampaignid=web_share" target="_blank" rel="noopener">app</a></span>
+                        <span class="timeline-location">· Remote</span>
+                    </div>
+                    <ul class="timeline-highlights">
+                        <li>Architected and built a CRM end-to-end consolidating organisation-wide employee data across 9+ platforms (Keycloak, Jira, Bitbucket, Google, Tableau, Trino, Pritunl, Microsoft) with multi-level access audit, anomaly detection, and automated remediation</li>
+                        <li>Built an event-driven pipeline on Google Cloud automating post-onboarding and release processes, clearing <strong>10k+ high-turnaround tasks</strong> that had been pending for over a year</li>
+                        <li>Collaborated directly with the co-founder and CTO to align technical architecture with fast-moving business priorities in a unicorn environment</li>
+                    </ul>
+                    <ul class="tech-list">
+                        <li>Python</li><li>Django</li><li>Kafka</li><li>Celery</li><li>GCP</li><li>AWS</li><li>Docker</li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-meta">Dec 2021 – Jun 2022 · Internship</div>
+                    <h3 class="timeline-title">Software Development Engineer</h3>
+                    <div class="timeline-company">
+                        <a href="https://drive.google.com/file/d/1Qhw_nOnyK0QaPaRLbDtYX19mBUhB-ARw/view?usp=sharing" target="_blank" rel="noopener" class="timeline-company-link">Examarly <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.7em;opacity:0.6"></i></a>
+                        <span class="timeline-location">· Remote</span>
+                    </div>
+                    <ul class="timeline-highlights">
+                        <li>Led back-end development for a new ed-tech platform, building JWT-based authentication and community features from scratch with FastAPI + SQLAlchemy, scaling to <strong>100k+ users</strong></li>
+                        <li>Implemented unit testing with Pytest achieving <strong>100% coverage</strong>, establishing a zero-regression deployment baseline</li>
+                    </ul>
+                    <ul class="tech-list">
+                        <li>Python</li><li>FastAPI</li><li>SQLAlchemy</li><li>Pytest</li>
+                    </ul>
+                </div>
+            </li>
+
+        </ol>
+    </div>
+</section>
+
+<!-- Certifications -->
+<section id="certifications" class="section certifications" aria-label="Certifications">
+    <div class="container">
+        <div class="section-header">
+            <h2>Certifications</h2>
+            <p class="section-note">A learning journey — from Python to distributed systems to Go.</p>
+        </div>
+        <ol class="certs-timeline">
+
+            <li class="cert-item">
+                <div class="cert-dot"></div>
+                <div class="cert-content">
+                    <div class="cert-year">2026</div>
+                    <div class="cert-card-row cert-has-pdf" data-cert-pdf="certificates/Coursera ABP64Y2YFQBR.pdf" data-cert-label="Vector Database Specialization">
+                        <iframe class="cert-thumb cert-thumb-pdf" src="certificates/Coursera ABP64Y2YFQBR.pdf" title="Vector Database Specialization preview" loading="lazy" tabindex="-1"></iframe>
+                        <div class="cert-info">
+                            <span class="cert-platform cert-platform-coursera">Coursera</span>
+                            <h3 class="cert-title">Vector Database Specialization</h3>
+                            <div class="cert-issuer">IBM · Feb 2026 · 4-course specialization</div>
+                        </div>
+                        <div class="cert-actions">
+                            <span class="cert-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                            <a href="https://coursera.org/verify/ABP64Y2YFQBR" target="_blank" rel="noopener" class="cert-verify">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="cert-item">
+                <div class="cert-dot"></div>
+                <div class="cert-content">
+                    <div class="cert-year">2025</div>
+                    <div class="cert-card-row cert-has-thumb" data-cert-img="certificates/bootdev_certificate (2).png" data-cert-label="Learn HTTP Servers in Go">
+                        <img class="cert-thumb" src="certificates/bootdev_certificate (2).png" alt="Learn HTTP Servers in Go certificate" loading="lazy" />
+                        <div class="cert-info">
+                            <span class="cert-platform cert-platform-bootdev">Boot.dev</span>
+                            <h3 class="cert-title">Learn HTTP Servers in Go</h3>
+                            <div class="cert-issuer">Boot.dev · May 2025</div>
+                        </div>
+                        <span class="cert-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                    </div>
+                    <div class="cert-card-row cert-card-row-sm cert-has-thumb" data-cert-img="certificates/bootdev_certificate (1).png" data-cert-label="Learn HTTP Clients in Go">
+                        <img class="cert-thumb" src="certificates/bootdev_certificate (1).png" alt="Learn HTTP Clients in Go certificate" loading="lazy" />
+                        <div class="cert-info">
+                            <span class="cert-platform cert-platform-bootdev">Boot.dev</span>
+                            <h3 class="cert-title">Learn HTTP Clients in Go</h3>
+                            <div class="cert-issuer">Boot.dev · May 2025</div>
+                        </div>
+                        <span class="cert-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                    </div>
+                    <div class="cert-card-row cert-card-row-sm cert-has-thumb" data-cert-img="certificates/bootdev_certificate.png" data-cert-label="Learn Go">
+                        <img class="cert-thumb" src="certificates/bootdev_certificate.png" alt="Learn Go certificate" loading="lazy" />
+                        <div class="cert-info">
+                            <span class="cert-platform cert-platform-bootdev">Boot.dev</span>
+                            <h3 class="cert-title">Learn Go</h3>
+                            <div class="cert-issuer">Boot.dev · May 2025</div>
+                        </div>
+                        <span class="cert-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                    </div>
+                </div>
+            </li>
+
+            <li class="cert-item">
+                <div class="cert-dot"></div>
+                <div class="cert-content">
+                    <div class="cert-year">2021</div>
+                    <div class="cert-card-row cert-has-pdf" data-cert-pdf="certificates/Coursera 9VJBV6348GYW.pdf" data-cert-label="Django for Everybody Specialization">
+                        <iframe class="cert-thumb cert-thumb-pdf" src="certificates/Coursera 9VJBV6348GYW.pdf" title="Django for Everybody preview" loading="lazy" tabindex="-1"></iframe>
+                        <div class="cert-info">
+                            <span class="cert-platform cert-platform-coursera">Coursera</span>
+                            <h3 class="cert-title">Django for Everybody Specialization</h3>
+                            <div class="cert-issuer">University of Michigan · Jul 2021 · 4-course specialization</div>
+                        </div>
+                        <div class="cert-actions">
+                            <span class="cert-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                            <a href="https://coursera.org/verify/9VJBV6348GYW" target="_blank" rel="noopener" class="cert-verify">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="cert-item">
+                <div class="cert-dot"></div>
+                <div class="cert-content">
+                    <div class="cert-year">2020</div>
+                    <div class="cert-card-row cert-has-pdf" data-cert-pdf="certificates/Coursera 5AF5KSTPWBX8.pdf" data-cert-label="Using Databases with Python">
+                        <iframe class="cert-thumb cert-thumb-pdf" src="certificates/Coursera 5AF5KSTPWBX8.pdf" title="Using Databases with Python preview" loading="lazy" tabindex="-1"></iframe>
+                        <div class="cert-info">
+                            <span class="cert-platform cert-platform-coursera">Coursera</span>
+                            <h3 class="cert-title">Using Databases with Python</h3>
+                            <div class="cert-issuer">University of Michigan · Oct 2020</div>
+                        </div>
+                        <div class="cert-actions">
+                            <span class="cert-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                            <a href="https://coursera.org/verify/5AF5KSTPWBX8" target="_blank" rel="noopener" class="cert-verify">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="cert-card-row cert-card-row-sm cert-has-pdf" data-cert-pdf="certificates/Coursera UFMA6A5TL835.pdf" data-cert-label="Using Python to Access Web Data">
+                        <iframe class="cert-thumb cert-thumb-pdf" src="certificates/Coursera UFMA6A5TL835.pdf" title="Using Python to Access Web Data preview" loading="lazy" tabindex="-1"></iframe>
+                        <div class="cert-info">
+                            <span class="cert-platform cert-platform-coursera">Coursera</span>
+                            <h3 class="cert-title">Using Python to Access Web Data</h3>
+                            <div class="cert-issuer">University of Michigan · Sep 2020</div>
+                        </div>
+                        <div class="cert-actions">
+                            <span class="cert-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                            <a href="https://coursera.org/verify/UFMA6A5TL835" target="_blank" rel="noopener" class="cert-verify">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="cert-card-row cert-card-row-sm cert-has-pdf" data-cert-pdf="certificates/Coursera G4W7A9PFL99C.pdf" data-cert-label="Java for Android">
+                        <iframe class="cert-thumb cert-thumb-pdf" src="certificates/Coursera G4W7A9PFL99C.pdf" title="Java for Android preview" loading="lazy" tabindex="-1"></iframe>
+                        <div class="cert-info">
+                            <span class="cert-platform cert-platform-coursera">Coursera</span>
+                            <h3 class="cert-title">Java for Android</h3>
+                            <div class="cert-issuer">Vanderbilt University · Sep 2020</div>
+                        </div>
+                        <div class="cert-actions">
+                            <span class="cert-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                            <a href="https://coursera.org/verify/G4W7A9PFL99C" target="_blank" rel="noopener" class="cert-verify">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="cert-card-row cert-card-row-sm cert-has-pdf" data-cert-pdf="certificates/Coursera JZHA2JJZHHHF.pdf" data-cert-label="Python Data Structures">
+                        <iframe class="cert-thumb cert-thumb-pdf" src="certificates/Coursera JZHA2JJZHHHF.pdf" title="Python Data Structures preview" loading="lazy" tabindex="-1"></iframe>
+                        <div class="cert-info">
+                            <span class="cert-platform cert-platform-coursera">Coursera</span>
+                            <h3 class="cert-title">Python Data Structures</h3>
+                            <div class="cert-issuer">University of Michigan · May 2020</div>
+                        </div>
+                        <div class="cert-actions">
+                            <span class="cert-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                            <a href="https://coursera.org/verify/JZHA2JJZHHHF" target="_blank" rel="noopener" class="cert-verify">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="cert-card-row cert-card-row-sm cert-has-pdf" data-cert-pdf="certificates/Coursera XV565Z8N9UKW.pdf" data-cert-label="Writing, Running, and Fixing Code in C">
+                        <iframe class="cert-thumb cert-thumb-pdf" src="certificates/Coursera XV565Z8N9UKW.pdf" title="Writing Running Fixing Code in C preview" loading="lazy" tabindex="-1"></iframe>
+                        <div class="cert-info">
+                            <span class="cert-platform cert-platform-coursera">Coursera</span>
+                            <h3 class="cert-title">Writing, Running, and Fixing Code in C</h3>
+                            <div class="cert-issuer">Duke University · May 2020</div>
+                        </div>
+                        <div class="cert-actions">
+                            <span class="cert-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                            <a href="https://coursera.org/verify/XV565Z8N9UKW" target="_blank" rel="noopener" class="cert-verify">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="cert-card-row cert-card-row-sm cert-has-pdf" data-cert-pdf="certificates/Coursera R3M234YMPU4G.pdf" data-cert-label="Programming Fundamentals">
+                        <iframe class="cert-thumb cert-thumb-pdf" src="certificates/Coursera R3M234YMPU4G.pdf" title="Programming Fundamentals preview" loading="lazy" tabindex="-1"></iframe>
+                        <div class="cert-info">
+                            <span class="cert-platform cert-platform-coursera">Coursera</span>
+                            <h3 class="cert-title">Programming Fundamentals</h3>
+                            <div class="cert-issuer">Duke University · Jan 2020</div>
+                        </div>
+                        <div class="cert-actions">
+                            <span class="cert-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                            <a href="https://coursera.org/verify/R3M234YMPU4G" target="_blank" rel="noopener" class="cert-verify">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="cert-item">
+                <div class="cert-dot"></div>
+                <div class="cert-content">
+                    <div class="cert-year">2019</div>
+                    <div class="cert-card-row cert-has-pdf" data-cert-pdf="certificates/Coursera B954BEYV4F5U.pdf" data-cert-label="Programming for Everybody">
+                        <iframe class="cert-thumb cert-thumb-pdf" src="certificates/Coursera B954BEYV4F5U.pdf" title="Programming for Everybody preview" loading="lazy" tabindex="-1"></iframe>
+                        <div class="cert-info">
+                            <span class="cert-platform cert-platform-coursera">Coursera</span>
+                            <h3 class="cert-title">Programming for Everybody (Getting Started with Python)</h3>
+                            <div class="cert-issuer">University of Michigan · Aug 2019</div>
+                        </div>
+                        <div class="cert-actions">
+                            <span class="cert-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                            <a href="https://coursera.org/verify/B954BEYV4F5U" target="_blank" rel="noopener" class="cert-verify">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="cert-item">
+                <div class="cert-dot"></div>
+                <div class="cert-content">
+                    <div class="cert-year">2017</div>
+                    <div class="cert-card-row cert-has-pdf" data-cert-pdf="certificates/Coursera 5RRCKA4YC773.pdf" data-cert-label="Learning How to Learn">
+                        <iframe class="cert-thumb cert-thumb-pdf" src="certificates/Coursera 5RRCKA4YC773.pdf" title="Learning How to Learn preview" loading="lazy" tabindex="-1"></iframe>
+                        <div class="cert-info">
+                            <span class="cert-platform cert-platform-coursera">Coursera</span>
+                            <h3 class="cert-title">Learning How to Learn</h3>
+                            <div class="cert-issuer">UC San Diego · Apr 2017 · with Honors</div>
+                        </div>
+                        <div class="cert-actions">
+                            <span class="cert-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                            <a href="https://coursera.org/verify/5RRCKA4YC773" target="_blank" rel="noopener" class="cert-verify">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+        </ol>
+    </div>
+</section>
+
+<!-- About -->
+<section id="about" class="section about" aria-label="About">
+    <div class="container about-grid">
+        <div class="about-photo">
+            <img src="images/img1.jpg" alt="Profile photo" />
+            <div class="about-photo-glow"></div>
+        </div>
+        <div class="about-copy">
+            <h2>About Me</h2>
+            <p>
+                I'm a passionate software engineer whose journey with real-world projects began in college. I participated in multiple global hackathons through which I was exposed to people from diverse backgrounds and multiple tech stacks like Backend, ML, Blockchain and more. Over the past few years, I have been collaborating closely with project managers, product developers, and stakeholders to design and deliver software solutions that address large-scale business challenges, contributing primarily as a backend engineer.
+            </p>
+            <br>
+            <p>
+                I'm still deeply interested in connecting with people from diverse backgrounds and learning about cultures and traditions from around the world.
+                I am now looking forward to transition being an innovator from an enabler. I'm excited by the idea of being part of a team where collaboration, personal and cultural growth, and innovation are valued just as much as professional development.
+            </p>
+            <div class="about-interests">
+                <span class="interest-tag">Distributed Systems</span>
+                <span class="interest-tag">Agentic AI systems</span>
+                <span class="interest-tag">Backend</span>
+                <span class="interest-tag">Cloud Architecture</span>
+                <span class="interest-tag">Microservices</span>
+                <span class="interest-tag">Open Source</span>
+            </div>
+            <div class="hero-ctas" style="margin-top:1.25rem">
+                <a href="AbhigyaShridhar.pdf" download class="btn btn-primary btn-sm">
+                    <i class="fa-solid fa-download"></i> Download Resume
+                </a>
+                <a href="https://www.linkedin.com/in/abhigya-shridhar-a73a5018b/" target="_blank" rel="noreferrer" class="btn btn-outline btn-sm">
+                    <i class="fa-brands fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="section contact" aria-label="Contact">
+    <div class="container">
+        <div class="section-header">
+            <h2>Get in Touch</h2>
+            <p class="section-note">Open to engineering focused roles and open source collaboration.</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <p class="contact-desc">I'm currently open to full-time engineering roles and interested in multinational opportunities. Drop me a message and I'll get back to you shortly.</p>
+                <div class="contact-links">
+                    <a class="btn btn-icon" href="https://github.com/AbhigyaShridhar" target="_blank" rel="noreferrer">
+                        <i class="fa-brands fa-github"></i> GitHub
+                    </a>
+                    <a class="btn btn-icon" href="https://www.linkedin.com/in/abhigya-shridhar-a73a5018b/" target="_blank" rel="noreferrer">
+                        <i class="fa-brands fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a class="btn btn-icon" href="mailto:abhigyashridhar101@gmail.com">
+                        <i class="fa-solid fa-envelope"></i> Email
+                    </a>
+                </div>
+            </div>
+            <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="e5377f46-4d91-43f8-a544-a1bcfd9a0f38">
+                <input type="hidden" name="redirect" value="false">
+                <div class="form-row">
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text" placeholder="Your name" required>
+                </div>
+                <div class="form-row">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-row">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" placeholder="What are you working on?" required></textarea>
+                </div>
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa-solid fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container footer-inner">
+        <div class="footer-left">
+            <span class="logo-bracket">&lt;/&gt;</span>
+            <span class="logo-text">Abhigya<span class="logo-dot">.</span>dev</span>
+        </div>
+        <p class="footer-copy">© <span id="year"></span> Abhigya Shridhar · Built with vanilla JS</p>
+        <div class="footer-social">
+            <a href="https://github.com/AbhigyaShridhar" target="_blank" rel="noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/abhigya-shridhar-a73a5018b/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:abhigyashridhar101@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+    </div>
+</footer>
+
+<!-- SPA Project Detail Page -->
+<div id="projectDetailPage" class="project-detail-page" aria-hidden="true">
+    <nav class="detail-nav">
+        <button class="detail-back" id="detailBack">
+            <i class="fa-solid fa-arrow-left"></i> Back
+        </button>
+        <div class="detail-nav-badges" id="detailNavBadges"></div>
     </nav>
+    <div class="detail-body" id="detailBody"></div>
+</div>
 
-    <section id="home" class="hero">
-        <div class="background-slider">
-            <img src="images/img1.jpg" alt="Background 1" class="active">
-            <img src="images/img2.jpg" alt="Background 2">
-            <img src="images/img7.jpg" alt="Background 3">
-            <img src="images/img3.jpeg" alt="Background 4">
-            <img src="images/img8.jpg" alt="Background 5">
-            <img src="images/img4.jpg" alt="Background 6">
-            <img src="images/img9.jpg" alt="Background 7">
-            <img src="images/img8.jpg" alt="Background 9">
+<script src="script.js"></script>
+<!-- Certificate Lightbox -->
+<div id="certLightbox" class="cert-lightbox" aria-hidden="true" role="dialog" aria-label="Certificate viewer">
+    <div class="cert-lightbox-backdrop"></div>
+    <div class="cert-lightbox-inner">
+        <div class="cert-lightbox-header">
+            <span id="certLightboxLabel" class="cert-lightbox-label"></span>
+            <button id="certLightboxClose" class="cert-lightbox-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="name-container">
-                <h1 class="glitch" data-text="Hi, I'm Abhigya Shridhar">Hi, I'm <span class="highlight">Abhigya Shridhar</span></h1>
-            </div>
-            <p class="subtitle">Software Engineer</p>
-            <div class="scroll-indicator">
-                <div class="arrow">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
-    </section>
+        <div class="cert-lightbox-body" id="certLightboxBody"></div>
+    </div>
+</div>
 
-    <section id="about" class="about">
-        <h2>About Me</h2>
-        <div class="about-content">
-            <div class="personal-statement">
-                <h3>Personal Statement</h3>
-                <p>
-                    I'm a passionate software engineer whose journey with real-world projects began in college. I participated in multiple global hackathons through which I was exposed to people from diverse backgrounds and multiple tech stacks like Backend, ML, Blockchain and more. Over the past two years, I have been collaborating closely with project managers, product developers, and stakeholders to design and deliver software solutions that address large-scale business challenges, contributing primarily as a backend engineer.<br><br>
-                    I'm still deeply interested in connecting with people from diverse backgrounds and learning about cultures and traditions from around the world. I'm excited by the idea of being part of a team where collaboration, personal and cultural growth, and innovation are valued just as much as professional development.
-                </p>
-            </div>
-            <div class="skills-section">
-                <h3>Technical Skills</h3>
-                <div class="skills-container">
-                    <div class="skill-category">
-                        <h4>Technologies</h4>
-                        <ul class="skill-list">
-                            <li>AWS</li>
-                            <li>Backend</li>
-                            <li>Docker</li>
-                            <li>NoSQL</li>
-                            <li>GraphQL</li>
-                            <li>Git/CI/CD</li>
-                            <li>ChatGPT Gemini Claude</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h4>Programming</h4>
-                        <ul class="skill-list">
-                            <li>Python</li>
-                            <li>Go</li>
-                            <li>C/C++</li>
-                            <li>JavaScript</li>
-                            <li>SQL</li>
-                            <li>HTML/CSS</li>
-                            <li>Redis</li>
-                            <li>Celery</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h4>Familiar With</h4>
-                        <ul class="skill-list">
-                            <li>Apache Kafka</li>
-                            <li>Apache Nifi</li>
-                            <li>Google Cloud</li>
-                            <li>NodeJS</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="opportunities" class="opportunities">
-        <h2>What I'm Looking For</h2>
-        <div class="opportunities-content">
-            <div class="opportunity-card">
-                <div class="opportunity-icon">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <h3>Growth Opportunities</h3>
-                <p>The world of tech is moving fast and I would like to move forward with it. I would love to be in a role where I can grow as an engineer and learn new technologies as well as new ways of working. A restrictive mind stunts an engineer's growth and I would rather embrace change and evolve.</p>
-            </div>
-            
-            <div class="opportunity-card">
-                <div class="opportunity-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <h3>Collaborative Teams</h3>
-                <p>I believe that in order to build something from the ground up, collaboration, feedback and an open culture is as important as individual technical skills. I am fine with not being given precise instructions and would infact prefer being innovative.</p>
-            </div>
-            
-            <div class="opportunity-card">
-                <div class="opportunity-icon">
-                    <i class="fas fa-globe"></i>
-                </div>
-                <h3>Global Exposure</h3>
-                <p>I would like to prioritize opportunities that would allow me to work with people from diverse backgrounds and cultures. Engineering is a universally important and inclusive field and so should be the engineers. I am thrilled by the idea of getting a chance to assimilate in a culture that is different from my own.</p>
-            </div>
-        </div>
-        
-        <div class="cta-section">
-            <h3>Let's Build Something Amazing Together</h3>
-            <p>If you're looking for a passionate software engineer who values collaboration, continuous learning, and building scalable solutions, I'd love to connect!</p>
-            <div class="cta-buttons">
-                <a href="mailto:abhigyashridhar101@gmail.com" class="cta-button primary">
-                    <i class="fas fa-envelope"></i>
-                    Get In Touch
-                </a>
-                <a href="https://www.linkedin.com/in/abhigya-shridhar-a73a5018b/" target="_blank" class="cta-button secondary">
-                    <i class="fab fa-linkedin"></i>
-                    Connect on LinkedIn
-                </a>
-                <a href="https://drive.google.com/file/d/1qMHls8q6LHx8hQ5dkeR9dp2H2mOvpIGZ/view?usp=share_link" target="_blank" class="cta-button secondary resume-button">
-                    <i class="fas fa-file-alt"></i>
-                    View Resume
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="timeline" class="timeline">
-        <h2>My Journey</h2>
-        <div class="timeline-container">
-            <div class="timeline-section">
-                <h3 class="section-title">Experience</h3>
-                <!-- Experience items will be added here by JavaScript -->
-            </div>
-            
-            <div class="timeline-section">
-                <h3 class="section-title">Other Projects</h3>
-                <!-- Other Projects items will be added here by JavaScript -->
-            </div>
-
-            <div class="timeline-section">
-                <h3 class="section-title">Education</h3>
-                <!-- Education items will be added here by JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <h2>Ready to Connect?</h2>
-        <div class="contact-content">
-            <div class="contact-message">
-                <h3>Let's Discuss the next big thing!!</h3>
-                <p>Whether you're looking for a backend / full stack engineer to join your team, want to collaborate on an exciting project, or just want to connect and share ideas, I'd love to hear from you!</p>
-            </div>
-            <div class="contact-actions">
-                <a href="mailto:abhigyashridhar101@gmail.com" class="contact-button primary">
-                    <i class="fas fa-envelope"></i> Send Me an Email
-                </a>
-                <a href="https://www.linkedin.com/in/abhigya-shridhar-a73a5018b/" target="_blank" class="contact-button secondary">
-                    <i class="fab fa-linkedin"></i> Connect on LinkedIn
-                </a>
-                <a href="https://github.com/AbhigyaShridhar" target="_blank" class="contact-button secondary">
-                    <i class="fab fa-github"></i> View My Code
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>2025 Abhigya Shridhar</p>
-    </footer>
-
-    <script src="script.js"></script>
 </body>
-</html> 
+</html>
