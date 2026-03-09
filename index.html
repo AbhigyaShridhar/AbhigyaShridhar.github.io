@@ -104,7 +104,7 @@
                 </div>
                 <p class="featured-desc">Isolated the payments service into a dedicated database microservice — separating it from the central monolith for fault tolerance and independent scaling. Built a custom Django DATABASE_ROUTERS layer to route reads to load-balanced replicas, extended GraphQL to support replica reads via a custom request header, and implemented a workaround for Django ticket #35974 (RelatedManager cross-db FK bug).</p>
                 <div class="featured-metrics">
-                    <span class="metric metric-green"><i class="fa-solid fa-arrow-trend-up"></i> ~60% primary DB read reduction</span>
+                    <span class="metric metric-green"><i class="fa-solid fa-arrow-trend-up"></i> ~20% primary DB read reduction</span>
                     <span class="metric metric-blue"><i class="fa-solid fa-database"></i> Payments DB fully isolated</span>
                     <span class="metric metric-purple"><i class="fa-brands fa-python"></i> Django #35974 workaround</span>
                 </div>

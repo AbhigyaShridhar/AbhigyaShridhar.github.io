@@ -601,11 +601,11 @@ const PROJECTS = {
     ],
     impact: [
       'Payments database fully isolated from the monolith — failures in unrelated services no longer affect payment processing; independent scaling is now possible',
-      '~60% reduction in primary DB read load; horizontal read scaling via replicas added through environment config',
+      '~20% reduction in primary DB read load; horizontal read scaling via replicas added through environment config',
       'GraphQL read queries now route to replicas without any changes to query code or resolvers',
       'Cross-database FK operations unblocked via a targeted workaround for Django ticket #35974',
     ],
-    metrics: ['Payments DB fully isolated from monolith', '~60% reduction in primary DB read load', 'N read replicas via env var — zero code changes', 'Django #35974 workaround — no framework modification needed'],
+    metrics: ['Payments DB fully isolated from monolith', '~20% reduction in primary DB read load', 'N read replicas via env var — zero code changes', 'Django #35974 workaround — no framework modification needed'],
     links: [{ label: 'Django Ticket #35974', url: 'https://code.djangoproject.com/ticket/35974', icon: 'fa-bug' }],
     diagram: buildSpinnyDbDiagram,
   },
