@@ -324,14 +324,14 @@
                         <span class="timeline-location">· Gurugram, India · Payments &amp; Demand</span>
                     </div>
                     <ul class="timeline-highlights">
-                        <li>Led payment gateway with Razorpay + ICICI integrations — <strong>31% drop in payment dropout</strong>, 12% uplift in online payments, saving 1% transaction fee while processing <strong>over 1B INR/month</strong></li>
+                        <li>Led development of a multi-bank payment gateway — <strong>31% drop in payment dropout</strong>, 12% uplift in online payments, saving 1% transaction fee while processing <strong>₹1B+ monthly volume</strong></li>
                         <li>Architected an internal SaaS tool unifying multiple gateway integrations, reducing new account onboarding time by <strong>90%</strong> and standardising flows across business teams</li>
-                        <li>Designed a reusable State Machine framework for payment and refund lifecycles; integrated Kafka + Apache NiFi for async state transitions and provider status checks</li>
-                        <li>Isolated payments DB from the central monolith via custom Django DATABASE_ROUTERS, cutting <strong>10%+ traffic</strong> to the primary and eliminating AWS DMS-induced lag and service cost</li>
-                        <li>Extended ORM and GraphQL for cross-database queries; separated read/write replicas for load balancing, with upstream patch submitted for Django ticket #35974</li>
-                        <li>Achieved <strong>2× – 8× faster API response times</strong> by migrating critical flows to dedicated microservices; reduced SQS API calls by <strong>50%</strong> via Celery long-polling and concurrency tuning</li>
-                        <li>Built "Progressive Dialer" demand tool in Node.js sending IVR calls to buy-leads and managing callback data — handling <strong>200k+ calls/day</strong></li>
-                        <li>Introduced a declarative audit framework using Django signals + contextvars for field-level change tracking with zero view code; added agentic AI tooling for unit test generation and coverage</li>
+                        <li>Designed a reusable State Machine framework for payment and refund flows using Kafka and NiFi for asynchronous transaction processing</li>
+                        <li>Reduced SQS API calls by <strong>50%</strong> by optimising Celery workers with long polling and concurrency control</li>
+                        <li>Implemented database routing to isolate the payments system from the monolith, reducing <strong>20% production traffic</strong> and eliminating AWS DMS replication lag</li>
+                        <li>Extended ORM and GraphQL for cross-database queries; separated read/write replicas for database load balancing</li>
+                        <li>Supported "Progressive Dialer" demand tool in Node.js sending IVR calls to buy-leads and managing callback data — handling <strong>200k+ calls/day</strong></li>
+                        <li>Introduced a comprehensive audit framework with configurable logging and visibility via Django signals, middlewares, and database hooks for seamless integration</li>
                     </ul>
                     <ul class="tech-list">
                         <li>Python</li><li>Django</li><li>Kafka</li><li>NiFi</li><li>MySQL</li><li>AWS SQS</li><li>Celery</li><li>GraphQL</li><li>Node.js</li>
@@ -350,12 +350,11 @@
                         <span class="timeline-location">· Remote</span>
                     </div>
                     <ul class="timeline-highlights">
-                        <li>Architected and built a CRM end-to-end consolidating organisation-wide employee data across 9+ platforms (Keycloak, Jira, Bitbucket, Google, Tableau, Trino, Pritunl, Microsoft) with multi-level access audit, anomaly detection, and automated remediation</li>
-                        <li>Built an event-driven pipeline on Google Cloud automating post-onboarding and release processes, clearing <strong>10k+ high-turnaround tasks</strong> that had been pending for over a year</li>
-                        <li>Collaborated directly with the co-founder and CTO to align technical architecture with fast-moving business priorities in a unicorn environment</li>
+                        <li>Architected and built an internal CRM system consolidating organisation-wide employee data with multi-level access controls and audit logging, using Kafka, Celery, AWS, Docker and Python</li>
+                        <li>Automated manual post-onboarding and release processes by building an event-driven pipeline using Google Cloud, clearing <strong>10k+ high-turnaround tasks</strong> that had been pending for over a year</li>
                     </ul>
                     <ul class="tech-list">
-                        <li>Python</li><li>Django</li><li>Kafka</li><li>Celery</li><li>GCP</li><li>AWS</li><li>Docker</li>
+                        <li>Python</li><li>Kafka</li><li>Celery</li><li>GCP</li><li>AWS</li><li>Docker</li>
                     </ul>
                 </div>
             </li>
@@ -371,7 +370,7 @@
                     </div>
                     <ul class="timeline-highlights">
                         <li>Led back-end development for a new ed-tech platform, building JWT-based authentication and community features from scratch with FastAPI + SQLAlchemy, scaling to <strong>100k+ users</strong></li>
-                        <li>Implemented unit testing with Pytest achieving <strong>100% coverage</strong>, establishing a zero-regression deployment baseline</li>
+                        <li>Implemented Pytest-based testing infrastructure ensuring high test coverage and reliable deployments</li>
                     </ul>
                     <ul class="tech-list">
                         <li>Python</li><li>FastAPI</li><li>SQLAlchemy</li><li>Pytest</li>
@@ -393,7 +392,6 @@
         <ol class="certs-timeline">
 
             <li class="cert-item">
-                <div class="cert-dot"></div>
                 <div class="cert-content">
                     <div class="cert-year">2026</div>
                     <div class="cert-card-row cert-has-pdf" data-cert-pdf="certificates/Coursera ABP64Y2YFQBR.pdf" data-cert-label="Vector Database Specialization">
@@ -412,7 +410,6 @@
             </li>
 
             <li class="cert-item">
-                <div class="cert-dot"></div>
                 <div class="cert-content">
                     <div class="cert-year">2025</div>
                     <div class="cert-card-row cert-has-thumb" data-cert-img="certificates/bootdev_certificate (2).png" data-cert-label="Learn HTTP Servers in Go">
@@ -446,7 +443,6 @@
             </li>
 
             <li class="cert-item">
-                <div class="cert-dot"></div>
                 <div class="cert-content">
                     <div class="cert-year">2021</div>
                     <div class="cert-card-row cert-has-pdf" data-cert-pdf="certificates/Coursera 9VJBV6348GYW.pdf" data-cert-label="Django for Everybody Specialization">
@@ -465,7 +461,6 @@
             </li>
 
             <li class="cert-item">
-                <div class="cert-dot"></div>
                 <div class="cert-content">
                     <div class="cert-year">2020</div>
                     <div class="cert-card-row cert-has-pdf" data-cert-pdf="certificates/Coursera 5AF5KSTPWBX8.pdf" data-cert-label="Using Databases with Python">
@@ -544,7 +539,6 @@
             </li>
 
             <li class="cert-item">
-                <div class="cert-dot"></div>
                 <div class="cert-content">
                     <div class="cert-year">2019</div>
                     <div class="cert-card-row cert-has-pdf" data-cert-pdf="certificates/Coursera B954BEYV4F5U.pdf" data-cert-label="Programming for Everybody">
@@ -563,7 +557,6 @@
             </li>
 
             <li class="cert-item">
-                <div class="cert-dot"></div>
                 <div class="cert-content">
                     <div class="cert-year">2017</div>
                     <div class="cert-card-row cert-has-pdf" data-cert-pdf="certificates/Coursera 5RRCKA4YC773.pdf" data-cert-label="Learning How to Learn">

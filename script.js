@@ -42,8 +42,8 @@ function createSvgDiagram(container, nodes, edges) {
   container.innerHTML = '';
 
   // Auto-size every node so label text always fits.
-  // Monospace approximations: title line ~6.6px/char @ size 11, body ~6.1px/char @ size 10.
-  const CW_TITLE = 6.6, CW_BODY = 6.1, LINE_H = 14, PAD_X = 26, PAD_Y = 20;
+  // Monospace approximations: title ~7.5px/char @ size 11, body ~6.8px/char @ size 10.
+  const CW_TITLE = 7.5, CW_BODY = 6.8, LINE_H = 15, PAD_X = 32, PAD_Y = 26;
   for (const n of nodes) {
     const lines = n.label.split('\n');
     let minW = 0;
@@ -54,6 +54,54 @@ function createSvgDiagram(container, nodes, edges) {
     n.w = Math.max(n.w || 170, Math.ceil(minW));
     n.h = Math.max(n.h || 60, Math.ceil(minH));
   }
+
+  // Scale all positions outward to give boxes breathing room.
+  const SPREAD = 1.5;
+  for (const n of nodes) { n.x = Math.round(n.x * SPREAD); n.y = Math.round(n.y * SPREAD); }
+
+  // Zigzag stagger: nodes sharing the same row get alternating vertical offsets.
+  const ROW_TOL = 20, STAGGER = 50;
+  const rowBuckets = {};
+  for (const n of nodes) {
+    const key = Math.round(n.y / ROW_TOL);
+    (rowBuckets[key] = rowBuckets[key] || []).push(n);
+  }
+  for (const bucket of Object.values(rowBuckets)) {
+    if (bucket.length < 2) continue;
+    bucket.sort((a, b) => a.x - b.x);
+    bucket.forEach((n, i) => { if (i % 2 === 1) n.y += STAGGER; });
+  }
+
+  // Overlap resolver — enforce a minimum gap between every pair of nodes.
+  const MIN_GAP = 50;
+  for (let iter = 0; iter < 30; iter++) {
+    let moved = false;
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const a = nodes[i], b = nodes[j];
+        const ox = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x) + MIN_GAP;
+        const oy = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y) + MIN_GAP;
+        if (ox > 0 && oy > 0) {
+          const half = (ox <= oy ? ox : oy) / 2;
+          if (ox <= oy) {
+            if (a.x <= b.x) { a.x -= half; b.x += half; }
+            else             { a.x += half; b.x -= half; }
+          } else {
+            if (a.y <= b.y) { a.y -= half; b.y += half; }
+            else             { a.y += half; b.y -= half; }
+          }
+          moved = true;
+        }
+      }
+    }
+    if (!moved) break;
+  }
+  // Clamp so nothing drifts off-screen
+  let minNX = Infinity, minNY = Infinity;
+  for (const n of nodes) { minNX = Math.min(minNX, n.x); minNY = Math.min(minNY, n.y); }
+  if (minNX < 10) for (const n of nodes) n.x += (10 - minNX);
+  if (minNY < 10) for (const n of nodes) n.y += (10 - minNY);
+  for (const n of nodes) { n.x = Math.round(n.x); n.y = Math.round(n.y); }
 
   let maxX = 0, maxY = 0;
   for (const n of nodes) {
@@ -89,6 +137,7 @@ function createSvgDiagram(container, nodes, edges) {
 
   const nodeMap = {};
   for (const n of nodes) nodeMap[n.id] = n;
+  const edgeLabels = [];
 
   for (const edge of edges) {
     const from = nodeMap[edge.from];
@@ -154,21 +203,11 @@ function createSvgDiagram(container, nodes, edges) {
     }));
 
     if (edge.label) {
-      const midX = (x1 + x2) / 2;
-      const midY = (y1 + y2) / 2 - 5;
-      const lw = edge.label.length * 6.2 + 12;
-      g.appendChild(svgEl('rect', {
-        x: midX - lw / 2, y: midY - 10,
-        width: lw, height: 16, rx: 3,
-        fill: '#0d1117', opacity: 0.9,
-      }));
-      const lt = svgEl('text', {
-        x: midX, y: midY + 3,
-        fill: color, 'font-size': '9.5',
-        'font-family': 'monospace', 'text-anchor': 'middle',
-      });
-      lt.textContent = edge.label;
-      g.appendChild(lt);
+      // True bezier midpoint at t=0.5 — curves away from node surfaces
+      const midX = 0.125*x1 + 0.375*cx1 + 0.375*cx2 + 0.125*x2;
+      const midY = 0.125*y1 + 0.375*cy1 + 0.375*cy2 + 0.125*y2;
+      const lw = edge.label.length * 6.2 + 16;
+      edgeLabels.push({ midX, midY, lw, lh: 18, color, text: edge.label });
     }
   }
 
@@ -203,6 +242,54 @@ function createSvgDiagram(container, nodes, edges) {
       ng.appendChild(t);
     });
     g.appendChild(ng);
+  }
+
+  // Push edge labels away from nodes and each other before drawing
+  const LPAD = 10;
+  for (let iter = 0; iter < 40; iter++) {
+    let moved = false;
+    for (const lbl of edgeLabels) {
+      // Push away from nodes
+      for (const n of nodes) {
+        const ox = Math.min(lbl.midX + lbl.lw/2, n.x + n.w) - Math.max(lbl.midX - lbl.lw/2, n.x) + LPAD;
+        const oy = Math.min(lbl.midY + lbl.lh/2, n.y + n.h) - Math.max(lbl.midY - lbl.lh/2, n.y) + LPAD;
+        if (ox > 0 && oy > 0) {
+          if (ox <= oy) { lbl.midX += lbl.midX < n.x + n.w/2 ? -ox : ox; }
+          else          { lbl.midY += lbl.midY < n.y + n.h/2 ? -oy : oy; }
+          moved = true;
+        }
+      }
+    }
+    // Push labels away from each other
+    for (let i = 0; i < edgeLabels.length; i++) {
+      for (let j = i + 1; j < edgeLabels.length; j++) {
+        const a = edgeLabels[i], b = edgeLabels[j];
+        const ox = Math.min(a.midX + a.lw/2, b.midX + b.lw/2) - Math.max(a.midX - a.lw/2, b.midX - b.lw/2) + LPAD;
+        const oy = Math.min(a.midY + a.lh/2, b.midY + b.lh/2) - Math.max(a.midY - a.lh/2, b.midY - b.lh/2) + LPAD;
+        if (ox > 0 && oy > 0) {
+          if (ox <= oy) { a.midX -= ox/2; b.midX += ox/2; }
+          else          { a.midY -= oy/2; b.midY += oy/2; }
+          moved = true;
+        }
+      }
+    }
+    if (!moved) break;
+  }
+
+  // Draw edge labels on top of everything
+  for (const { midX, midY, lw, lh, color, text } of edgeLabels) {
+    g.appendChild(svgEl('rect', {
+      x: midX - lw/2, y: midY - lh/2,
+      width: lw, height: lh, rx: 3,
+      fill: '#0d1117', opacity: 0.92,
+    }));
+    const lt = svgEl('text', {
+      x: midX, y: midY + 4,
+      fill: color, 'font-size': '9.5',
+      'font-family': 'monospace', 'text-anchor': 'middle',
+    });
+    lt.textContent = text;
+    g.appendChild(lt);
   }
 
   wrap.appendChild(svg);

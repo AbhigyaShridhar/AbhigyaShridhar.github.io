@@ -693,7 +693,7 @@ body {
 .certs-timeline::before {
     content: '';
     position: absolute;
-    left: 52px;
+    left: 3px;
     top: 8px;
     bottom: 8px;
     width: 2px;
@@ -701,29 +701,13 @@ body {
     opacity: 0.3;
 }
 .cert-item {
-    display: flex;
-    gap: 1.25rem;
     margin-bottom: 2rem;
     position: relative;
+    padding-left: 1.5rem;
 }
 .cert-item:last-child { margin-bottom: 0; }
-.cert-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--accent-1);
-    border: 2px solid var(--bg);
-    box-shadow: 0 0 0 2px var(--accent-1);
-    flex-shrink: 0;
-    margin-top: 4px;
-    position: relative;
-    left: 47px;
-    z-index: 1;
-}
 .cert-content {
-    flex: 1;
     min-width: 0;
-    padding-left: 1rem;
 }
 .cert-year {
     font-size: 0.7rem;
