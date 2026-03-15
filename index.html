@@ -23,8 +23,8 @@
         </a>
         <ul class="nav-links">
             <li><a href="#home" class="active">Home</a></li>
-            <li><a href="#experience">Experience</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
             <li><a href="#achievements">Achievements</a></li>
             <li><a href="#certifications">Certifications</a></li>
             <li><a href="#about">About</a></li>
@@ -216,6 +216,84 @@
     </div>
 </section>
 
+<!-- Experience -->
+<section id="experience" class="section experience" aria-label="Experience">
+    <div class="container">
+        <div class="section-header">
+            <h2>Experience</h2>
+        </div>
+        <ol class="timeline">
+
+            <li class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-meta">May 2023 – Present</div>
+                    <h3 class="timeline-title">Software Development Engineer</h3>
+                    <div class="timeline-company">
+                        <a href="https://www.spinny.com" target="_blank" rel="noopener" class="timeline-company-link">Spinny</a>
+                        <span class="timeline-company-ext"><a href="https://www.spinny.com" target="_blank" rel="noopener">website</a> | <a href="https://play.google.com/store/apps/details?id=com.spinny.consumer&pcampaignid=web_share" target="_blank" rel="noopener">app</a></span>
+                        <span class="timeline-location">· Gurugram, India · Payments &amp; Demand</span>
+                    </div>
+                    <p class="timeline-context">Spinny is India's largest platform for buying and selling pre-owned cars. I work on the Payments team, building the infrastructure that processes all online transactions — payment gateway integrations, refund automation, database isolation, and internal tooling. The system handles INR 1B+ in monthly transaction volume.</p>
+                    <ul class="timeline-highlights">
+                        <li>Led development of a multi-bank payment gateway — <strong>31% drop in payment dropout</strong>, 12% uplift in online payments, saving 1% transaction fee while processing <strong>₹1B+ monthly volume</strong></li>
+                        <li>Architected an internal SaaS tool unifying multiple gateway integrations, reducing new account onboarding time by <strong>90%</strong> and standardising flows across business teams</li>
+                        <li>Designed a reusable State Machine framework for payment and refund flows using Kafka and NiFi for asynchronous transaction processing</li>
+                        <li>Reduced SQS API calls by <strong>50%</strong> by optimising Celery workers with long polling and concurrency control</li>
+                        <li>Implemented database routing to isolate the payments system from the monolith, reducing <strong>20% production traffic</strong> and eliminating AWS DMS replication lag</li>
+                        <li>Extended ORM and GraphQL for cross-database queries; separated read/write replicas for database load balancing</li>
+                        <li>Supported "Progressive Dialer" demand tool in Node.js sending IVR calls to buy-leads and managing callback data — handling <strong>200k+ calls/day</strong></li>
+                        <li>Introduced a comprehensive audit framework with configurable logging and visibility via Django signals, middlewares, and database hooks for seamless integration</li>
+                    </ul>
+                    <ul class="tech-list">
+                        <li>Python</li><li>Django</li><li>Kafka</li><li>Apache NiFi</li><li>MySQL</li><li>AWS SQS</li><li>Celery</li><li>GraphQL</li><li>REST API</li><li>Node.js</li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-meta">Oct 2022 – Mar 2023 · Internship</div>
+                    <h3 class="timeline-title">Technical Consultant</h3>
+                    <div class="timeline-company">
+                        <a href="https://www.spinny.com" target="_blank" rel="noopener" class="timeline-company-link">Spinny</a>
+                        <span class="timeline-company-ext"><a href="https://www.spinny.com" target="_blank" rel="noopener">website</a> | <a href="https://play.google.com/store/apps/details?id=com.spinny.consumer&pcampaignid=web_share" target="_blank" rel="noopener">app</a></span>
+                        <span class="timeline-location">· Remote</span>
+                    </div>
+                    <ul class="timeline-highlights">
+                        <li>Architected and built an internal CRM system consolidating organisation-wide employee data with multi-level access controls and audit logging, using Kafka, Celery, AWS, Docker and Python</li>
+                        <li>Automated manual post-onboarding and release processes by building an event-driven pipeline using Google Cloud, clearing <strong>10k+ high-turnaround tasks</strong> that had been pending for over a year</li>
+                    </ul>
+                    <ul class="tech-list">
+                        <li>Python</li><li>Kafka</li><li>Celery</li><li>Google Cloud</li><li>AWS</li><li>Docker</li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-meta">Dec 2021 – Jun 2022 · Internship</div>
+                    <h3 class="timeline-title">Software Development Engineer</h3>
+                    <div class="timeline-company">
+                        <a href="https://drive.google.com/file/d/1Qhw_nOnyK0QaPaRLbDtYX19mBUhB-ARw/view?usp=sharing" target="_blank" rel="noopener" class="timeline-company-link">Examarly <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.7em;opacity:0.6"></i></a>
+                        <span class="timeline-location">· Remote</span>
+                    </div>
+                    <ul class="timeline-highlights">
+                        <li>Led back-end development for a new ed-tech platform, building JWT-based authentication and community features from scratch with FastAPI + SQLAlchemy, scaling to <strong>100k+ users</strong></li>
+                        <li>Implemented Pytest-based testing infrastructure ensuring high test coverage and reliable deployments</li>
+                    </ul>
+                    <ul class="tech-list">
+                        <li>Python</li><li>FastAPI</li><li>SQLAlchemy</li><li>Pytest</li><li>REST API</li><li>JWT</li>
+                    </ul>
+                </div>
+            </li>
+
+        </ol>
+    </div>
+</section>
+
 <!-- Academic Achievements -->
 <section id="achievements" class="section achievements" aria-label="Academic Achievements">
     <div class="container">
@@ -332,84 +410,6 @@
             </div>
 
         </div>
-    </div>
-</section>
-
-<!-- Experience -->
-<section id="experience" class="section experience" aria-label="Experience">
-    <div class="container">
-        <div class="section-header">
-            <h2>Experience</h2>
-        </div>
-        <ol class="timeline">
-
-            <li class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-meta">May 2023 – Present</div>
-                    <h3 class="timeline-title">Software Development Engineer</h3>
-                    <div class="timeline-company">
-                        <a href="https://www.spinny.com" target="_blank" rel="noopener" class="timeline-company-link">Spinny</a>
-                        <span class="timeline-company-ext"><a href="https://www.spinny.com" target="_blank" rel="noopener">website</a> | <a href="https://play.google.com/store/apps/details?id=com.spinny.consumer&pcampaignid=web_share" target="_blank" rel="noopener">app</a></span>
-                        <span class="timeline-location">· Gurugram, India · Payments &amp; Demand</span>
-                    </div>
-                    <p class="timeline-context">Spinny is India's largest platform for buying and selling pre-owned cars. I work on the Payments team, building the infrastructure that processes all online transactions — payment gateway integrations, refund automation, database isolation, and internal tooling. The system handles INR 1B+ in monthly transaction volume.</p>
-                    <ul class="timeline-highlights">
-                        <li>Led development of a multi-bank payment gateway — <strong>31% drop in payment dropout</strong>, 12% uplift in online payments, saving 1% transaction fee while processing <strong>₹1B+ monthly volume</strong></li>
-                        <li>Architected an internal SaaS tool unifying multiple gateway integrations, reducing new account onboarding time by <strong>90%</strong> and standardising flows across business teams</li>
-                        <li>Designed a reusable State Machine framework for payment and refund flows using Kafka and NiFi for asynchronous transaction processing</li>
-                        <li>Reduced SQS API calls by <strong>50%</strong> by optimising Celery workers with long polling and concurrency control</li>
-                        <li>Implemented database routing to isolate the payments system from the monolith, reducing <strong>20% production traffic</strong> and eliminating AWS DMS replication lag</li>
-                        <li>Extended ORM and GraphQL for cross-database queries; separated read/write replicas for database load balancing</li>
-                        <li>Supported "Progressive Dialer" demand tool in Node.js sending IVR calls to buy-leads and managing callback data — handling <strong>200k+ calls/day</strong></li>
-                        <li>Introduced a comprehensive audit framework with configurable logging and visibility via Django signals, middlewares, and database hooks for seamless integration</li>
-                    </ul>
-                    <ul class="tech-list">
-                        <li>Python</li><li>Django</li><li>Kafka</li><li>Apache NiFi</li><li>MySQL</li><li>AWS SQS</li><li>Celery</li><li>GraphQL</li><li>REST API</li><li>Node.js</li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-meta">Oct 2022 – Mar 2023 · Internship</div>
-                    <h3 class="timeline-title">Technical Consultant</h3>
-                    <div class="timeline-company">
-                        <a href="https://www.spinny.com" target="_blank" rel="noopener" class="timeline-company-link">Spinny</a>
-                        <span class="timeline-company-ext"><a href="https://www.spinny.com" target="_blank" rel="noopener">website</a> | <a href="https://play.google.com/store/apps/details?id=com.spinny.consumer&pcampaignid=web_share" target="_blank" rel="noopener">app</a></span>
-                        <span class="timeline-location">· Remote</span>
-                    </div>
-                    <ul class="timeline-highlights">
-                        <li>Architected and built an internal CRM system consolidating organisation-wide employee data with multi-level access controls and audit logging, using Kafka, Celery, AWS, Docker and Python</li>
-                        <li>Automated manual post-onboarding and release processes by building an event-driven pipeline using Google Cloud, clearing <strong>10k+ high-turnaround tasks</strong> that had been pending for over a year</li>
-                    </ul>
-                    <ul class="tech-list">
-                        <li>Python</li><li>Kafka</li><li>Celery</li><li>Google Cloud</li><li>AWS</li><li>Docker</li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-meta">Dec 2021 – Jun 2022 · Internship</div>
-                    <h3 class="timeline-title">Software Development Engineer</h3>
-                    <div class="timeline-company">
-                        <a href="https://drive.google.com/file/d/1Qhw_nOnyK0QaPaRLbDtYX19mBUhB-ARw/view?usp=sharing" target="_blank" rel="noopener" class="timeline-company-link">Examarly <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.7em;opacity:0.6"></i></a>
-                        <span class="timeline-location">· Remote</span>
-                    </div>
-                    <ul class="timeline-highlights">
-                        <li>Led back-end development for a new ed-tech platform, building JWT-based authentication and community features from scratch with FastAPI + SQLAlchemy, scaling to <strong>100k+ users</strong></li>
-                        <li>Implemented Pytest-based testing infrastructure ensuring high test coverage and reliable deployments</li>
-                    </ul>
-                    <ul class="tech-list">
-                        <li>Python</li><li>FastAPI</li><li>SQLAlchemy</li><li>Pytest</li><li>REST API</li><li>JWT</li>
-                    </ul>
-                </div>
-            </li>
-
-        </ol>
     </div>
 </section>
 
