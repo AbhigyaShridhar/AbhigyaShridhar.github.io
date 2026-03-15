@@ -360,7 +360,7 @@ function buildPaymentGatewayDiagram(container) {
     { id: 'api',     type: 'service',  label: 'API Validation Layer\nDRF · client config · refundability', x: 20,  y: 110, w: 265, h: 55 },
     { id: 'wh_auth', type: 'service',  label: 'Webhook Verification\nsignature check · duplicate guard',   x: 680, y: 110, w: 255, h: 55 },
     { id: 'asym',   type: 'service',  label: 'Asymmetric Auth Layer\npublic key verification · signature check', x: 680, y: 185, w: 255, h: 55 },
-    { id: 'sm',      type: 'gateway',  label: 'State Machine Engine\nformal FSM · atomic multi-model updates\n2 models per transition', x: 220, y: 195, w: 370, h: 65 },
+    { id: 'sm',      type: 'gateway',  label: 'State Machine Engine\nformal Finite State Machine · atomic multi-model updates\n2 models per transition', x: 220, y: 195, w: 370, h: 65 },
     { id: 'waiting', type: 'state',    label: 'Waiting\ncreate contract · init order',    x: 20,  y: 330, w: 165, h: 55 },
     { id: 'pending', type: 'state',    label: 'Pending\nwebhook received · log',          x: 205, y: 330, w: 165, h: 55 },
     { id: 'success', type: 'state',    label: 'Success\nfetch payment method · notify',   x: 390, y: 330, w: 175, h: 55 },
@@ -579,8 +579,8 @@ const PROJECTS = {
     title: 'Microservice database Isolation & Replica Routing',
     category: 'corporate',
     badge: 'Corporate', badgeClass: 'badge-corporate', badgeIcon: 'fa-building',
-    role: 'Backend Engineer', period: '2023 – 2024',
-    tech: ['Python', 'Django', 'MySQL', 'Microservices', 'Read Replicas', 'DATABASE_ROUTERS', 'GraphQL'],
+    role: 'Backend Engineer', period: '2024 – 2025',
+    tech: ['Python', 'Django', 'MySQL', 'Database Architecture', 'Read/Write Replica Splitting', 'Django Database Routing', 'GraphQL', 'Graphene-Django', 'AWS DMS'],
     problem: [
       'The payments service shared a database with the central monolith — any instability or heavy load in unrelated services directly impacted payment reliability; fault isolation was non-existent',
       'All DB reads — including read-only GraphQL queries and GET requests — were routed to the primary MySQL instance, making it the single bottleneck as traffic scaled',
@@ -592,7 +592,7 @@ const PROJECTS = {
       'Built a custom <code>DATABASE_ROUTERS</code> class intercepting all ORM operations: writes always hit the primary; reads are load-balanced across replicas unless the operation is within a mutation context',
       'Extended the GraphQL layer to support replica reads via a custom <code>gqlread</code> request header — allowing read-only queries to be explicitly routed to replicas, working around the GraphQL-always-POST constraint',
       '<code>allow_relation()</code> returns <code>True</code> for any primary+replica object combination, implementing a targeted workaround for the Django ticket #35974 FK bug without modifying framework internals',
-      'Replicas configured via environment variable — adding a replica requires zero code changes',
+      'Replicas configured via environment variable — horizontal scaling requires zero code changes',
     ],
     challenges: [
       'GraphQL\'s HTTP POST-only nature made it impossible to route by method alone — required designing a custom header protocol and integrating it into both the router and the GraphQL execution layer',
@@ -601,12 +601,15 @@ const PROJECTS = {
     ],
     impact: [
       'Payments database fully isolated from the monolith — failures in unrelated services no longer affect payment processing; independent scaling is now possible',
-      '~20% reduction in primary DB read load; horizontal read scaling via replicas added through environment config',
+      '~20% reduction in primary DB read load, horizontal read scaling via replicas added through environment config',
       'GraphQL read queries now route to replicas without any changes to query code or resolvers',
       'Cross-database FK operations unblocked via a targeted workaround for Django ticket #35974',
     ],
     metrics: ['Payments DB fully isolated from monolith', '~20% reduction in primary DB read load', 'N read replicas via env var — zero code changes', 'Django #35974 workaround — no framework modification needed'],
-    links: [{ label: 'Django Ticket #35974', url: 'https://code.djangoproject.com/ticket/35974', icon: 'fa-bug' }],
+    links: [
+      { label: 'Django Ticket #35974', url: 'https://code.djangoproject.com/ticket/35974', icon: 'fa-bug' },
+      { label: 'Django PR #20897', url: 'https://github.com/django/django/pull/20897', icon: 'fa-code-pull-request' },
+    ],
     diagram: buildSpinnyDbDiagram,
   },
 
@@ -615,7 +618,7 @@ const PROJECTS = {
     category: 'corporate',
     badge: 'Corporate', badgeClass: 'badge-corporate', badgeIcon: 'fa-building',
     role: 'Backend Engineer', period: '2023 – 2025',
-    tech: ['Python', 'Django', 'State Machine', 'Multi-provider', 'Kafka', 'UPI', 'DRF', 'AES Encryption'],
+    tech: ['Python', 'Django', 'Finite State Machine', 'Kafka', 'Celery', 'Django REST Framework', 'Database Transactions', 'Adapter Pattern'],
     problem: [
       'Different business units and client teams each required separate payment integrations — there was no generic onboarding flow, causing duplicated effort and inconsistent behaviour across teams',
       'Payment collections required simultaneous integration with multiple providers — each with a completely different API contract, webhook format, and authentication scheme',
@@ -633,7 +636,7 @@ const PROJECTS = {
     ],
     challenges: [
       'Multiple terminal states (<code>SuccessState</code>, <code>FailedState</code>, <code>ExpiredState</code>) at the same order level required careful state machine design to allow branching without ambiguity',
-      'QR codes and deep links have provider-specific generation APIs with different expiry and status-check flows — needed a unified abstraction that hid these differences from business logic',
+      'QR codes and deep links have provider-specific generation APIs with different expiry and status-check flows — needed a unified abstraction with frequent updates that hid these differences from business logic',
       'Webhook payload authentication differed per provider — some use HMAC signatures, others use asymmetric encryption — requiring a pluggable verification layer in front of the state machine',
       'Refund provider timeouts had to be handled asynchronously without blocking the payment API — solved via Kafka event + NiFi retry pipeline',
       'Keeping two models consistent across transition failures required atomic ORM operations wrapping the full hook chain',
@@ -686,7 +689,7 @@ const PROJECTS = {
     category: 'corporate',
     badge: 'Corporate', badgeClass: 'badge-corporate', badgeIcon: 'fa-building',
     role: 'Backend Engineer', period: '2024 – 2025',
-    tech: ['Python', 'Django', 'Django Signals', 'Celery', 'contextvars', 'GenericForeignKey', 'ContentTypes', 'MySQL'],
+    tech: ['Python', 'Django', 'Django Signals', 'Celery', 'Async Context Propagation', 'Django ContentTypes Framework', 'Audit Logging', 'MySQL'],
     problem: [
       'Payment models (<code>Receivables</code>, <code>GatewayPaymentOrder</code>) needed field-level change auditing for financial compliance — existing approach required manual logging in every view, leading to inconsistent coverage',
       'Django\'s <code>queryset.update()</code> bypasses the signal system entirely — bulk updates were completely invisible to any signal-based audit approach',
@@ -751,7 +754,7 @@ const PROJECTS = {
     category: 'opensource',
     badge: 'Open Source', badgeClass: 'badge-opensource', badgeIcon: 'fa-github',
     role: 'Author & Maintainer', period: '2024 – Present',
-    tech: ['Python', 'AST', 'LangGraph', 'Anthropic Claude', 'OpenAI GPT-4o', 'Click', 'FastAPI', 'Swagger'],
+    tech: ['Python', 'Python AST', 'LangGraph', 'Claude API', 'OpenAI Embeddings', 'RAG', 'PyPI'],
     problem: `Writing unit tests is time-consuming and frequently skipped under deadline pressure. Existing AI test generation tools either require runtime code execution (importing the module, which fails on complex dependencies), rely on simple regex/pattern matching without understanding code structure, or generate tests that look foreign to the existing test suite — wrong naming conventions, wrong fixture style, wrong assertion patterns.`,
     idea: `Build a CLI tool that uses pure Python AST analysis (zero runtime imports) to understand code structure, learns testing style from existing test files in the repo, and uses an LLM (one call per function) with style context to generate tests that integrate naturally. The diff-test command makes it perfect for PR workflows.`,
     solution: `Commands:
@@ -806,8 +809,8 @@ codecoverage diff-test since abc1234`,
     title: 'state-machine-framework',
     category: 'opensource',
     badge: 'Open Source', badgeClass: 'badge-opensource', badgeIcon: 'fa-github',
-    role: 'Author & Maintainer', period: '2023 – Present',
-    tech: ['Python', 'ORM Agnostic', 'Decorator Pattern', 'Abstract Adapter', 'Django', 'Workflow Chaining'],
+    role: 'Author & Maintainer', period: '2025 – Present',
+    tech: ['Python', 'Finite State Machine', 'Decorator Pattern', 'Abstract ORM Adapter', 'Django', 'Database Transactions', 'PyPI', 'Open Source'],
     problem: `State machine implementations in Python are either tightly coupled to specific ORMs, lack atomic DB updates on state transitions, or have too complex integration for fast moving projects. This forces teams to re-implement state machine logic per project, or use library internals that weren't designed for production — missing pre/post hooks, validators, and ORM portability.`,
     idea: `Build a minimal, framework-agnostic state machine library where the ORM is an abstract adapter (swappable without touching core logic), transitions are atomic by design, and lifecycle hooks (pre/post/validators) are first-class concepts exposed as decorators.`,
     solution: `Core components:

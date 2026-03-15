@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /tmp/figma_extract)",
+      "Read(//tmp/**)",
+      "Bash(unzip -o /Users/abhigyashridhar/portfolio/figma.make)",
+      "Read(//private/tmp/figma_extract/**)",
+      "Bash(file:*)",
+      "Bash(open:*)",
+      "WebFetch(domain:pypi.org)",
+      "WebFetch(domain:github.com)",
+      "Bash(for f in /private/tmp/claude-502/-Users-abhigyashridhar-portfolio/tasks/*.output)",
+      "Bash(do echo \"=== $f ===\")",
+      "Read(//Users/abhigyashridhar/portfolio/**)",
+      "Bash(done)",
+      "WebFetch(domain:code.djangoproject.com)",
+      "Bash(node:*)",
+      "Bash(pdftotext:*)",
+      "Bash(do:*)",
+      "Bash(pip3 install:*)",
+      "WebFetch(domain:devfolio.co)",
+      "WebFetch(domain:devpost.com)",
+      "WebFetch(domain:shridharabhigya.wixsite.com)",
+      "WebFetch(domain:abhigyashridhar.github.io)",
+      "Bash(grep:*)",
+      "Bash(python3:*)"
+    ]
+  }
+}

@@ -1327,7 +1327,7 @@ body {
 .project-detail-page {
     position: fixed;
     inset: 0;
-    z-index: 600;
+    z-index: 1100;
     background: var(--bg);
     overflow-y: auto;
     transform: translateX(100%);
@@ -1700,4 +1700,163 @@ body {
 @media (max-width: 480px) {
     .section { padding: 3.5rem 0; }
     .hero-ctas { flex-direction: column; align-items: flex-start; }
+}
+
+/* ── Academic Achievements ── */
+.achievements-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.achievement-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.5rem;
+    padding: 1.5rem 1.75rem;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+    transition: background 0.15s;
+}
+.achievement-row:last-child { border-bottom: none; }
+.achievement-row:hover { background: var(--surface-2, rgba(99,102,241,0.04)); }
+.ach-event-label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 0.35rem;
+}
+.ach-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: var(--text);
+}
+.ach-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 0.6rem;
+}
+.ach-award {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent-2);
+    margin-bottom: 0.7rem;
+}
+.ach-award i { margin-right: 0.3rem; opacity: 0.8; }
+.ach-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 120px;
+    padding-top: 0.15rem;
+}
+.ach-links .btn { justify-content: center; white-space: nowrap; }
+
+/* ── Certifications compact table ── */
+.certs-compact-table {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.cert-row {
+    display: grid;
+    grid-template-columns: 60px 1fr auto auto;
+    gap: 1rem 1.5rem;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+}
+.cert-row:last-child { border-bottom: none; }
+.cert-row:hover { background: var(--surface-2, rgba(99,102,241,0.04)); }
+.cert-row-year {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 600;
+}
+.cert-row-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+.cert-row-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+}
+.cert-row-issuer {
+    font-size: 0.78rem;
+    color: var(--muted);
+}
+.cert-row-verify {
+    font-size: 0.8rem;
+    color: var(--accent);
+    text-decoration: none;
+    white-space: nowrap;
+}
+.cert-row-verify:hover { text-decoration: underline; }
+.cert-row-verify-none {
+    color: var(--border);
+    font-size: 0.85rem;
+    text-align: center;
+}
+.cert-view-hint {
+    font-size: 0.8rem;
+    color: var(--muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s;
+}
+.cert-has-thumb:hover .cert-view-hint { color: var(--accent); }
+.cert-has-thumb { cursor: pointer; }
+
+@media (max-width: 768px) {
+    .achievement-row {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    .ach-links { flex-direction: row; flex-wrap: wrap; padding-top: 0; }
+    .cert-row {
+        grid-template-columns: 50px 1fr;
+        grid-template-rows: auto auto;
+    }
+    .cert-row .cert-platform { grid-column: 2; }
+    .cert-row .cert-row-verify { grid-column: 2; }
+}
+
+/* ── New elements (v3 overhaul) ── */
+.hero-skills {
+    font-family: var(--font-mono, 'Fira Mono', monospace);
+    font-size: 0.88rem;
+    color: var(--accent);
+    opacity: 0.85;
+    display: block;
+    margin-top: 0.35rem;
+}
+
+.stat-anchor {
+    font-size: 1.6rem;
+}
+
+.timeline-context {
+    color: var(--muted);
+    font-size: 0.93rem;
+    line-height: 1.65;
+    margin-bottom: 0.9rem;
+    font-style: italic;
+}
+
+.contact-visa-note {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-family: var(--font-mono, 'Fira Mono', monospace);
 }
